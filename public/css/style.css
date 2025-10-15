@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'RayMedium';
+    src: url('../fonts/Ray-Mediummimvid.eot');
+    src: url('../fonts/Ray-Mediummimvid.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ray-Mediummimvid.woff2') format('woff2'),
+        url('../fonts/Ray-Mediummimvid.woff') format('woff'),
+        url('../fonts/Ray-Mediummimvid.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'RayMedium', sans-serif;
+}
+
