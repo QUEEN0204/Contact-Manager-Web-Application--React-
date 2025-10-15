@@ -1,18 +1,22 @@
 import SearchContact from './Contacts/SearchContact';
 
+import {Purple ,Background } from '../helpers/colors';
+
 const Navbar = () =>{
     return(
-        <nav className="navbar navbar-light navbar-expand-sm shadow-lg">
+        <nav className="navbar navbar-dark navbar-expand-sm shadow-lg" style={{backgroundColor:Background}}>
             <div className="container">
                 <div className="row w-100">
                     <div className="col">
-                        <i className="fa fa-id-badge" />
-                            مدیریت 
-                             {" "}
-                            <span style={{color:'purple'}}>
-                               مخاطبین
-                            </span>
-                        
+                        <div className="navbar-brand">
+                            <i className="fa fa-id-badge" style={{color:Purple}} />
+                                {" "}
+                                مدیریت 
+                                {" "}
+                                <span style={{color:Purple}}>
+                                مخاطبین
+                                </span>
+                        </div> 
                     </div>
                     <div className="col">
                        <SearchContact />
