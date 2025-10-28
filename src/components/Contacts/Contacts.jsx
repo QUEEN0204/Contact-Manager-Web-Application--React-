@@ -1,11 +1,12 @@
 import Contact from "./Contact";
+import Spinner from "../Spinner";
 import { Background, Pink,Cyan} from "../../helpers/colors";
 
 import NotFound from '../../assets/not_found.gif';
 
 
 
-const Contacts = ({contacts}) =>{
+const Contacts = ({contacts,loading}) =>{
     return(
         <>
         
@@ -24,27 +25,35 @@ const Contacts = ({contacts}) =>{
                     </div>
                 </div>
             </section>
-            <section className="container">
-                <div className="row">
-                    {
-                        contacts.length >0 ? contacts.map(c=>
-                            <Contact key={c.id} contact={c} />
-                        )
-                        :
-                        (
-                            <div className="text-center py-5" style={{backgroundColor:Background}}>
-                                <p className="h3" style={{color:'#4c7dd6'}}>
-                                    مخاطب مورد نظر یافت نشد!
-                                </p>
-                                <img  className="w-25 rounded" src={NotFound} alt="notFound" />
+            {
+                loading ? (<Spinner /> )
+                :
+                (
+                    <section className="container">
+                    <div className="row">
+                        {
+                            contacts.length >0 ? contacts.map(c=>
+                                <Contact key={c.id} contact={c} />
+                            )
+                            :
+                            (
+                                <div className="text-center py-5" style={{backgroundColor:Background}}>
+                                    <p className="h3" style={{color:'#4c7dd6'}}>
+                                        مخاطبی یافت نشد!
+                                    </p>
+                                    <img  className="w-25 rounded" src={NotFound} alt="notFound" />
+    
+                                </div>
+                                
+                            )
+                        } 
+                      
+                    </div>
+                </section>
+                )
 
-                            </div>
-                            
-                        )
-                    } 
-                  
-                </div>
-            </section>
+            }
+           
         </>
 
     )
