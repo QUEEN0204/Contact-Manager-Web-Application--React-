@@ -1,8 +1,13 @@
 import { useState } from 'react';
 
-import Navbar from './Components/Navbar';
-import Contacts from './Components/Contacts/Contacts';
+// import Navbar from './Components/Navbar';
+// import Contacts from './Components/Contacts/Contacts';
+import{
+  Contacts,
+  
+  Navbar
 
+} from './Components';
 
 import './App.css';
 
