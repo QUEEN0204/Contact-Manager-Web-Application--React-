@@ -1,9 +1,11 @@
 import Contact from "./Contact";
-import { Pink} from "../../helpers/colors";
+import { Background, Pink,Cyan} from "../../helpers/colors";
+
+import NotFound from '../../assets/not_found.gif';
 
 
 
-const Contacts = () =>{
+const Contacts = ({contacts}) =>{
     return(
         <>
         
@@ -24,7 +26,23 @@ const Contacts = () =>{
             </section>
             <section className="container">
                 <div className="row">
-                   <Contact />
+                    {
+                        contacts.length >0 ? contacts.map(c=>
+                            <Contact key={c.id} contact={c} />
+                        )
+                        :
+                        (
+                            <div className="text-center py-5" style={{backgroundColor:Background}}>
+                                <p className="h3" style={{color:'#4c7dd6'}}>
+                                    مخاطب مورد نظر یافت نشد!
+                                </p>
+                                <img  className="w-25 rounded" src={NotFound} alt="notFound" />
+
+                            </div>
+                            
+                        )
+                    } 
+                  
                 </div>
             </section>
         </>
