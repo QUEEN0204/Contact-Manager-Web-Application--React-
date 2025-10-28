@@ -1,4 +1,4 @@
-import { CurrentLine, Pink, Purple , Orange ,Cyan ,Red } from "../../helpers/colors";
+import { CurrentLine, Pink, Purple,Red ,Background } from "../../helpers/colors";
 const Contacts = () =>{
     return(
         <>
@@ -21,7 +21,7 @@ const Contacts = () =>{
             <section className="container">
                 <div className="row">
                     <div className="col-md-6">
-                        <div className="card my-2" style={{background:CurrentLine}}>
+                        <div className="card my-2" style={{background:'#282a47db'}}>
                             <div className="card-body">
                                 <div className="row align-items-center d-flex justify-content-around">
                                     <div className="col-md-4 col-sm-4">
@@ -57,11 +57,11 @@ const Contacts = () =>{
                                         </ul>
                                     </div>
                                     <div className="col-md-1 col-sm-1 d-flex flex-column align-items-center">
-                                        <button className="btn my-1" style={{backgroundColor:Orange}}>
+                                        <button className="btn my-1" style={{backgroundColor:Purple}}>
 
                                             <i className="fa fa-eye"/>
                                         </button>
-                                        <button className="btn my-1" style={{backgroundColor:Cyan}}>
+                                        <button className="btn my-1" style={{backgroundColor:Pink}}>
 
                                             <i className="fa fa-edit"/>
                                         </button>
