@@ -32,7 +32,7 @@ const Contacts = ({contacts,loading}) =>{
                     <section className="container">
                     <div className="row">
                         {
-                            contacts.length >0 ? contacts.map(c=>
+                            contacts?.length > 0  ? contacts.map(c=>
                                 <Contact key={c.id} contact={c} />
                             )
                             :
