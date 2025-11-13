@@ -1,0 +1,35 @@
+{
+  "contacts": [
+    {
+      "id": "10",
+      "fullName": "Zahra Ershad",
+      "photo": "",
+      "mobile": "091234567889",
+      "email": "z@gmail.com",
+      "job": "Full-Stack developer",
+      "groups": "1"
+    }
+  ],
+  "groups": [
+    {
+      "id": "1",
+      "name": "co-work"
+    },
+    {
+      "id": "2",
+      "name": "relative"
+    },
+    {
+      "id": "3",
+      "name": "relative"
+    },
+    {
+      "id": "4",
+      "name": "service"
+    },
+    {
+      "id": "5",
+      "name": "known"
+    }
+  ]
+}
