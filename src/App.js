@@ -2,7 +2,8 @@
 // import Contacts from './Components/Contacts/Contacts';
 
 import {Route , Routes , useNavigate , Navigate} from 'react-router';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
+import axios from 'axios';
 import{
   AddContact,
   Contacts,
@@ -18,6 +19,29 @@ const App =() => {
 
   const[getLoading,setLoading] = useState(false);
   const [getContacts , setContacts] = useState([]);
+  const [getGroups,setGroups] = useState([]);
+  useEffect(()=>{
+    const fetchData = async ()=>{
+      try{
+
+        setLoading(true);
+        const response = await axios.get('http://localhost:9000/contacts');
+        console.log(response);
+        if(response.status==200){
+          setLoading(false);
+        }
+
+      }
+      catch(e){
+        alert("Error!");
+        console.log(e.message);
+      }
+
+    }
+
+    fetchData();
+  },[]);
+
 
   return (
     <div className="App">
