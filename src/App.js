@@ -11,8 +11,13 @@ import{
   ViewContact,
   Navbar
 } from './Components';
-
 import './App.css';
+import {getAllContacts,GetAllGroups} from '../src/services/contactService';
+
+
+
+
+
 
 
 const App =() => {
@@ -25,14 +30,14 @@ const App =() => {
       try{
         setLoading(true);
 
-        const {data:contactsData} = await axios.get('http://localhost:9000/contacts');
-        const {data : groupsData} = await axios.get('http://localhost:9000/groups');
+        const {data:contactsData} = await getAllContacts();
+        const {data : groupsData} = await GetAllGroups();
 
         setContacts(contactsData);
         setGroups(groupsData);
 
         setLoading(false);
-        // console.log(response);
+       // console.log(response);
         // if(response.status==200){
         //   setLoading(false);
         // }
