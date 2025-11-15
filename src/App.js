@@ -23,18 +23,25 @@ const App =() => {
   useEffect(()=>{
     const fetchData = async ()=>{
       try{
-
         setLoading(true);
-        const response = await axios.get('http://localhost:9000/contacts');
-        console.log(response);
-        if(response.status==200){
-          setLoading(false);
-        }
+
+        const {data:contactsData} = await axios.get('http://localhost:9000/contacts');
+        const {data : groupsData} = await axios.get('http://localhost:9000/groups');
+
+        setContacts(contactsData);
+        setGroups(groupsData);
+
+        setLoading(false);
+        // console.log(response);
+        // if(response.status==200){
+        //   setLoading(false);
+        // }
 
       }
       catch(e){
         alert("Error!");
         console.log(e.message);
+        setLoading(false);
       }
 
     }

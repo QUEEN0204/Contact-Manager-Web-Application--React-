@@ -1,14 +1,15 @@
 import { Pink, Purple,Red} from "../../helpers/colors";
 
 
-const Contact = () =>{
+const Contact = ({contact}) =>{
     return(
         <div className="col-md-6">
         <div className="card my-2" style={{background:'#282a47db'}}>
             <div className="card-body">
                 <div className="row align-items-center d-flex justify-content-around">
                     <div className="col-md-4 col-sm-4">
-                        <img src="https://placehold.co/200" alt="" 
+                        <img src={contact.photo}
+                        alt={contact.fullName} 
                         style={{border:`1px solid ${Purple}`}} className="img-fluid rounded" />
                     </div>
                     <div className="col-md-7 col-sm-7">
@@ -17,7 +18,7 @@ const Contact = () =>{
                                 نام و نام خانوادگی: {' '}
 
                                 <span className="fw-bold mx-1">
-                                    زهرا ارشاد
+                                    {contact.fullName}
                                 </span>
 
                             </li>
@@ -25,7 +26,7 @@ const Contact = () =>{
                                  شماره تلفن  : {' '}
 
                                 <span className="fw-bold mx-1">
-                                    09123456789
+                                    {contact.mobile}
                                 </span>
 
                             </li>
@@ -33,7 +34,7 @@ const Contact = () =>{
                                 آدرس ایمیل: {' '}
 
                                 <span className="fw-bold mx-1">
-                                    zahra@gmail.com
+                                    {contact.email}
                                 </span>
 
                             </li>
