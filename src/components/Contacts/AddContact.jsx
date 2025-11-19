@@ -7,7 +7,13 @@ import {} from '../../helpers/colors';
 import '../../App.css';
 
 
-const AddContact = ({ loading }) => {
+const AddContact = ({
+     loading ,
+     contact ,
+     setContactInfo ,
+     groups ,
+     createContactForm
+     }) => {
     return (
       <>
         {loading ? (
@@ -35,12 +41,14 @@ const AddContact = ({ loading }) => {
                   
                   <div className="row justify-content-center">
                     <div className="col-12 col-md-8 col-lg-6">
-                      <form className="contact-form">
+                      <form className="contact-form" onSubmit={createContactForm}>
                         <div className="form-group">
                           <input 
                             type="text" 
                             name="fullName" 
-                            placeholder="نام کامل" 
+                            value={contact.fullName}
+                            onChange={setContactInfo}
+                            placeholder="نام و نام خانوداگی" 
                             className="form-input"
                             required={true} 
                           />
@@ -49,7 +57,9 @@ const AddContact = ({ loading }) => {
                         <div className="form-group">
                           <input 
                             type="text" 
-                            name="photo" 
+                            name="photo"
+                            value={contact.photo}
+                            onChange={setContactInfo} 
                             placeholder="آدرس عکس" 
                             className="form-input"
                             required={true} 
@@ -59,7 +69,9 @@ const AddContact = ({ loading }) => {
                         <div className="form-group">
                           <input 
                             type="number" 
-                            name="mobile" 
+                            name="mobile"
+                            value={contact.mobile}
+                            onChange={setContactInfo} 
                             placeholder="شماره موبایل" 
                             className="form-input"
                             required={true} 
@@ -70,6 +82,8 @@ const AddContact = ({ loading }) => {
                           <input 
                             type="email" 
                             name="email" 
+                            value={contact.email}
+                            onChange={setContactInfo}
                             placeholder="آدرس ایمیل" 
                             className="form-input"
                             required={true} 
@@ -80,6 +94,8 @@ const AddContact = ({ loading }) => {
                           <input 
                             type="text" 
                             name="job" 
+                            value={contact.job}
+                            onChange={setContactInfo}
                             placeholder="شغل" 
                             className="form-input"
                             required={true} 
@@ -87,8 +103,18 @@ const AddContact = ({ loading }) => {
                         </div>
                         
                         <div className="form-group">
-                          <select name="group" className="form-select">
-                            <option value="">انتخاب گروه</option>
+                          <select 
+                          name="group"
+                          value={contact.group}
+                          onChange={setContactInfo}
+                          className="form-select">
+                            {
+                                groups.length > 0 && groups.map(group =>(
+                                    <option value={group.id} key={group.id}>
+                                        {group.name }
+                                    </option>
+                                ))
+                            }
                           </select>
                         </div>
                         
