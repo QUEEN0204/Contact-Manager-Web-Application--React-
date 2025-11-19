@@ -3,6 +3,7 @@ import Spinner from "../Spinner";
 import { Background, Pink,Cyan} from "../../helpers/colors";
 
 import NotFound from '../../assets/not_found.gif';
+import { Link } from "react-router-dom";
 
 
 
@@ -15,11 +16,11 @@ const Contacts = ({contacts,loading}) =>{
                     <div className="row">
                         <div className="col">
                             <p className="h3">
-                                <button className="btn mx-2" style={{backgroundColor:Pink}}>
+                                <Link to={'/contacts/add'} className="btn mx-2" style={{backgroundColor:Pink}}>
                                         ایجاد مخاطب جدید
                                         <i className="fa fa-plus-circle mx-2"></i>
 
-                                </button>
+                                </Link>
                             </p>
                         </div>
                     </div>

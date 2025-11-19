@@ -62,7 +62,7 @@ const App =() => {
           <Route path='/' element={<Navigate to='/contacts'/>} />
           <Route path='/contacts'  element={
             <Contacts loading={getLoading} contacts={getContacts} />} />
-          <Route path='/contacts/add/' element={<AddContact/>} />
+          <Route path='/contacts/add/' element={<AddContact loading={getLoading} />} />
           <Route path='/contacts/edit/:contactId' element={<EditContact/>} />
           <Route path='/contacts/viewcontacts' element={<ViewContact />} />
         </Routes>

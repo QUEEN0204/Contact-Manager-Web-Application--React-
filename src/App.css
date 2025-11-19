@@ -44,8 +44,6 @@
 
 /* استایل‌های عمومی */
 .add-contact-container {
-  font-family:'RayMedium';
-  min-height: 100vh;
   background-color: #282A36;
   color: #F8F8F2;
 }
@@ -55,7 +53,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  
   background-color: #282A36;
 }
 
@@ -70,7 +68,7 @@
 
 .contact-form-wrapper {
   display: flex;
-  min-height: 100vh;
+  
   background-color: #282A36;
 }
 
@@ -78,7 +76,7 @@
 .form-content {
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  
 }
 
 .spinner-side {
@@ -133,7 +131,7 @@
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .form-input {
