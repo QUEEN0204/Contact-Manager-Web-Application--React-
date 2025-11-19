@@ -8,6 +8,10 @@ export const getAllContacts = () =>{
     const url = `${SERVER_URL}/contacts`;
     return axios.get(url);
 };
+export const getContact = (contactId) =>{
+    const url = `${SERVER_URL}/contacts/${contactId}`;
+    return axios.get(url);
+};
 
 //Get Groups  from server
 export const GetAllGroups = () =>{

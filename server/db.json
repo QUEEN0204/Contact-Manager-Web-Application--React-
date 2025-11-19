@@ -24,8 +24,7 @@
       "mobile": "09222222222",
       "email": "badiie@gmail.com",
       "job": "actor",
-      "groups": "",
-      "group": "4"
+      "groups": "4"
     },
     {
       "id": "a46d",
@@ -34,7 +33,7 @@
       "mobile": "09333333333333",
       "email": "sima@gmail.com",
       "job": "HR manager",
-      "groups": ""
+      "groups": "4"
     },
     {
       "id": "c9e5",
@@ -43,8 +42,7 @@
       "mobile": "094444444444",
       "email": "rad@gmail.com",
       "job": "musician",
-      "groups": "",
-      "group": "5"
+      "groups": "5"
     },
     {
       "id": "d9ee",
@@ -53,7 +51,6 @@
       "mobile": "0955555555",
       "email": "amin@gmail.com",
       "job": "writer",
-      "groups": "",
       "group": "4"
     },
     {
@@ -63,7 +60,6 @@
       "mobile": "09666666666666",
       "email": "kk@gmail.com",
       "job": "driver",
-      "groups": "",
       "group": "3"
     },
     {
@@ -73,8 +69,7 @@
       "mobile": "0977777777777",
       "email": "dabir@gmail.com",
       "job": "police",
-      "groups": "",
-      "group": "4"
+      "groups": "4"
     }
   ],
   "groups": [

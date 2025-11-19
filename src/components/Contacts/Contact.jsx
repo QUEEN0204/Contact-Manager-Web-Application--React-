@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { Pink, Purple,Red} from "../../helpers/colors";
+
 
 
 const Contact = ({contact}) =>{
@@ -41,10 +43,10 @@ const Contact = ({contact}) =>{
                         </ul>
                     </div>
                     <div className="col-md-1 col-sm-1 d-flex flex-column align-items-center">
-                        <button className="btn my-1" style={{backgroundColor:Purple}}>
+                        <Link to={`/contacts/${contact.id}`} className="btn my-1" style={{backgroundColor:Purple}}>
 
                             <i className="fa fa-eye"/>
-                        </button>
+                        </Link>
                         <button className="btn my-1" style={{backgroundColor:Pink}}>
 
                             <i className="fa fa-edit"/>

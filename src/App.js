@@ -126,7 +126,7 @@ const App =() => {
 
           />} />
           <Route path='/contacts/edit/:contactId' element={<EditContact/>} />
-          <Route path='/contacts/viewcontacts' element={<ViewContact />} />
+          <Route path='/contacts/:contactId' element={<ViewContact />} />
         </Routes>
     </div>
   );
