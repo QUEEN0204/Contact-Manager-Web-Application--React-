@@ -144,7 +144,7 @@ const App =() => {
   
 
   const createContactForm= async (event) =>{
-   
+    event.preventDefault();
     const {status} = await createContact(getContact);
     try{
       if (status === 201){
