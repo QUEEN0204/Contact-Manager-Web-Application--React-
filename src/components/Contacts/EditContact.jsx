@@ -4,7 +4,7 @@ import { getContact, getGroup, updateContact, GetAllGroups } from '../../service
 import Spinner from '../Spinner';
 import '../../App.css';
 
-const EditContact = () => {
+const EditContact = ({forceRender , setForceRender}) => {
     const navigate = useNavigate();
     const { contactId } = useParams();
 
@@ -58,6 +58,7 @@ const EditContact = () => {
             const { data } = await updateContact(state.contact, contactId);
             setState({ ...state, loading: false });
             if (data) {
+                setForceRender( !forceRender);
                 navigate('/contacts');
             }
         } catch (e) {

@@ -125,7 +125,12 @@ const App =() => {
           createContactForm={createContactForm}
 
           />} />
-          <Route path='/contacts/edit/:contactId' element={<EditContact/>} />
+          <Route path='/contacts/edit/:contactId' 
+          element={
+          <EditContact
+            forceRender={forceRender}
+            setForceRender={setForceRender}
+          />} />
           <Route path='/contacts/:contactId' element={<ViewContact />} />
         </Routes>
     </div>
