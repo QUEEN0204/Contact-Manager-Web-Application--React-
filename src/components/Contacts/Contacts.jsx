@@ -2,12 +2,13 @@ import Contact from "./Contact";
 import Spinner from "../Spinner";
 import { Background, Pink,Cyan} from "../../helpers/colors";
 
+
 import NotFound from '../../assets/not_found.gif';
 import { Link } from "react-router-dom";
 
 
 
-const Contacts = ({contacts,loading}) =>{
+const Contacts = ({contacts , loading , confirmDelet}) =>{
     return(
         <>
         
@@ -34,7 +35,11 @@ const Contacts = ({contacts,loading}) =>{
                     <div className="row">
                         {
                             contacts?.length > 0  ? contacts.map(c=>
-                                <Contact key={c.id} contact={c} />
+                                <Contact
+                                 key={c.id}
+
+                                 contact={c}
+                                   />
                             )
                             :
                             (
