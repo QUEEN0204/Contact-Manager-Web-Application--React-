@@ -12,9 +12,8 @@ import{
   Navbar
 } from './Components';
 import './App.css';
-import {getAllContacts,GetAllGroups ,createContact} from '../src/services/contactService';
-
-
+import {getAllContacts,GetAllGroups ,createContact , deletContact} from '../src/services/contactService';
+import { confirmAlert } from 'react-confirm-alert';
 
 
 
@@ -85,6 +84,60 @@ const App =() => {
 
   },[forceRender]);
 
+
+  const confirm = ({contactId, contactFullName}) => {
+    confirmAlert({
+      customUI:({onClose})=>{
+        return (
+          <div>
+            <h4>
+              حذف مخاطب
+            </h4>
+            <h6>
+              آیا از حذف 
+            {contactFullName}
+              اطمینان دارید؟
+            </h6>
+            <div>
+              <button
+              onClick={()=>{
+                removeContact(contactId);
+                onClose();
+              }}
+               >
+                بله 
+              </button>
+              <button onClick={()=>onClose()}>
+                انصراف
+              </button>
+            </div>
+          </div>
+        )
+      }
+
+    });
+  }
+
+  const removeContact = async(contactId) =>{
+    try{
+      const response = await deletContact(contactId);
+      if(response){
+        setLoading(false);
+        const {data:contactData} = await getAllContacts();
+
+        setContacts(contactData);
+
+        setLoading(false);
+      }
+
+    }
+    catch(e){
+      console.log(e.message);
+      setLoading(false);
+    }
+  }
+  
+
   const createContactForm= async (event) =>{
     if (event) {
       event.preventDefault();
@@ -116,7 +169,12 @@ const App =() => {
         <Routes>
           <Route path='/' element={<Navigate to='/contacts'/>} />
           <Route path='/contacts'  element={
-            <Contacts loading={getLoading} contacts={getContacts} />} />
+            <Contacts
+             loading={getLoading}
+            contacts={getContacts}
+            confirmDelet={confirm}
+           
+               />} />
           <Route path='/contacts/add/' element={<AddContact 
           loading={getLoading} 
           setContactInfo={setContactInfo}

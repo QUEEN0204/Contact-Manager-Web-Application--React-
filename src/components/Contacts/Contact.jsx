@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { Pink, Purple,Red} from "../../helpers/colors";
+import { deletContact } from "../../services/contactService";
 
 
 
-const Contact = ({contact}) =>{
+const Contact = ({contact , confirmDelet}) =>{
     return(
         <div className="col-md-6">
         <div className="card my-2" style={{background:'#282a47db'}}>
@@ -51,7 +52,7 @@ const Contact = ({contact}) =>{
 
                             <i className="fa fa-edit"/>
                         </Link>
-                        <button className="btn my-1" style={{backgroundColor:Red}}>
+                        <button onClick={confirmDelet} className="btn my-1" style={{backgroundColor:Red}}>
 
                             <i className="fa fa-trash"/>
                         </button>
