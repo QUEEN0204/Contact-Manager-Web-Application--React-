@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
-import { getContact, getGroup, updateContact} from '../../services/contactService';
+import { getContact, getGroup, updateContact , GetAllGroups} from '../../services/contactService';
 import Spinner from '../Spinner';
 
 
@@ -30,7 +30,7 @@ const EditContact = () =>{
                 setState({...state, loading:true});
 
                 const {data:contactData} = await getContact(contactId);
-                const {data:groupData} = await getGroup(contactData.groups);
+                const {data:groupData} = await GetAllGroups();
 
                 setState({
                     loading:false ,
