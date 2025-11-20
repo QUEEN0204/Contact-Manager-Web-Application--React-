@@ -57,9 +57,52 @@ const ViewContact = () =>{
        {
         loading? (<Spinner />):(
             <>
-            <h1 style={{color:'white'}}>
-                {contact.id? contact.mobile : "not"}
-            </h1>
+            <div className="viewcontact">
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <img src={contact.photo} alt="" />
+                        </div>
+                        <div className="col">
+                            <div>
+                                <h5>
+                                    نام و نام خانوادگی
+                                </h5>
+                                <h4>
+                                {contact.fullName}
+                                </h4>
+                            </div>
+                             <div>
+                                <h5>
+                                    شماره تلفن
+                                </h5>
+                                <h4>
+                                {contact.mobile}
+                                </h4>
+                            </div>
+                             <div>
+                                <h5>
+                                    شغل
+                                </h5>
+                                <h4>
+                                {contact.job}
+                                </h4>
+                            </div>
+                             <div>
+                                <h5>
+                                   نسبت
+                                </h5>
+                                <h4>
+                                {contact.groups}
+                                </h4>
+                            </div>
+                        </div>
+                        <Link to={'/contacts'}>
+                        بازگشت به صفحه اصلی
+                        </Link>
+                    </div>
+                </div>
+            </div>
     
             </>
         )
