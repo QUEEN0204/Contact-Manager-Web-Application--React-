@@ -25,6 +25,7 @@ const App =() => {
   const[forceRender, setForceRender]= useState(false);
   const [query , setQuery] = useState([]);
   const [getContacts , setContacts] = useState([]);
+  const [getFilteredContact , setFilteredContact] = useState([]);
   const [getGroups,setGroups] = useState([]);
   const[getContact , setContact] =useState({
     fullName:"" ,
@@ -46,6 +47,7 @@ const App =() => {
         const {data : groupsData} = await GetAllGroups();
 
         setContacts(contactsData);
+        setFilteredContact(contactsData);
         setGroups(groupsData);
 
         setLoading(false);
@@ -184,17 +186,19 @@ const App =() => {
         .toLowerCase()
         .includes(event.target.value.toLowerCase());
     });
+
+    setFilteredContact(allContacts);
   };
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar query={query} search={searchContacts} />
         <Routes>
           <Route path='/' element={<Navigate to='/contacts'/>} />
           <Route path='/contacts'  element={
             <Contacts
              loading={getLoading}
-            contacts={getContacts}
+            contacts={getFilteredContact}
             confirmDelet={confirm}
            
                />} />
