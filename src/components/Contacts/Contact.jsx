@@ -52,7 +52,7 @@ const Contact = ({contact , confirmDelet}) =>{
 
                             <i className="fa fa-edit"/>
                         </Link>
-                        <button onClick={confirmDelet} className="btn my-1" style={{backgroundColor:Red}}>
+                        <button onClick={() => confirmDelet(contact.id, contact.fullName)} className="btn my-1" style={{backgroundColor:Red}}>
 
                             <i className="fa fa-trash"/>
                         </button>

@@ -37,7 +37,7 @@ const Contacts = ({contacts , loading , confirmDelet}) =>{
                                 <Contact
                                  key={c.id}
                                  contact={c}
-                                 confirmDelet={()=>confirmDelet(c.id , c.fullName) }
+                                 confirmDelet={() => confirmDelet({ contactId: c.id, contactFullName: c.fullName })}
 
                                    />
                             )
