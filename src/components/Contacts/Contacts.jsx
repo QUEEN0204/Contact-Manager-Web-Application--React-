@@ -16,7 +16,7 @@ const Contacts = ({contacts , loading , confirmDelet}) =>{
                     <div className="row">
                         <div className="col">
                             <p className="h3">
-                                <Link to={'/contacts/add'} className="btn mx-2" style={{backgroundColor:Pink}}>
+                                <Link to={'/contacts/add'} className="btn mx-2" style={{backgroundColor:Pink, float:'right' , marginTop: '15px'}}>
                                         ایجاد مخاطب جدید
                                         <i className="fa fa-plus-circle mx-2"></i>
 
