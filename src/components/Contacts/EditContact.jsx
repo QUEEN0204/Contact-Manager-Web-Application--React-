@@ -1,6 +1,9 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
+
 import { useEffect, useState } from "react";
-import { getContact, getGroup, updateContact, GetAllGroups } from '../../services/contactService';
+
+import { getContact, updateContact, GetAllGroups } from '../../services/contactService';
+
 import Spinner from '../Spinner';
 import '../../App.css';
 
