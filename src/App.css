@@ -681,7 +681,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: #bd93f991;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -689,7 +689,7 @@
 }
 
 .confirm-alert-container {
-  background: #44475A;
+  background: #282A36;
   border-radius: 15px;
   padding: 2rem;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -707,7 +707,7 @@
 }
 
 .confirm-alert-message {
-  color: #8BE9FD;
+  color: white;
   font-size: 1rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -715,7 +715,7 @@
 }
 
 .confirm-alert-message span {
-  color: #FF5555;
+  color: #BD93F9;
   font-weight: 600;
 }
 
@@ -737,24 +737,24 @@
 }
 
 .confirm-alert-delete-btn {
-  background: #FF5555;
+  background: #8BE9FD;
   color: #F8F8F2;
 }
 
 .confirm-alert-delete-btn:hover {
-  background: #FF6B6B;
+  background: #8be8fdde;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 85, 85, 0.4);
+  box-shadow: 0 4px 12px  #75e5fede;
 }
 
 .confirm-alert-cancel-btn {
-  background: #6272A4;
+  background: #bb91f6;
   color: #F8F8F2;
-  border: 2px solid #6272A4;
+  border: 2px solid #bd93f991;
 }
 
 .confirm-alert-cancel-btn:hover {
-  background: #44475A;
+  background: #bb91f6;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(98, 114, 164, 0.4);
 }

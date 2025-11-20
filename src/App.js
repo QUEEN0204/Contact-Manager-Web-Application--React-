@@ -144,16 +144,22 @@ const App =() => {
   
 
   const createContactForm= async (event) =>{
-    if (event) {
-      event.preventDefault();
-    }
+   
     const {status} = await createContact(getContact);
     try{
       if (status === 201){
-        createContactForm({}); //این فرم خالی ارسال میشه تا بعد ثبت موفق مخاطب داده قبلی در اینپوتها پاک شه
+        setContact({
+          fullName: "",
+          photo: "",
+          mobile: "",
+          email: "",
+          job: "",
+          groups: ""
+        }); //این فرم خالی ارسال میشه تا بعد ثبت موفق مخاطب داده قبلی در اینپوتها پاک شه
+        navigate("/contacts");
         setForceRender(!forceRender);
         console.log(status.message);
-        navigate("/contacts");
+        
       }
   }
   catch(e){
