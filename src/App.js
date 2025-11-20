@@ -89,34 +89,39 @@ const App =() => {
     confirmAlert({
       customUI:({onClose})=>{
         return (
-          <div>
-            <h4>
-              حذف مخاطب
-            </h4>
-            <h6>
-              آیا از حذف 
-            {contactFullName}
-              اطمینان دارید؟
-            </h6>
-            <div>
-              <button
-              onClick={()=>{
-                removeContact(contactId);
-                onClose();
-              }}
-               >
-                بله 
-              </button>
-              <button onClick={()=>onClose()}>
-                انصراف
-              </button>
+          <div className="confirm-alert-overlay">
+            <div className="confirm-alert-container">
+              <h4 className="confirm-alert-title">
+                حذف مخاطب
+              </h4>
+              <h6 className="confirm-alert-message">
+                آیا از حذف 
+                <span> {contactFullName} </span>
+                اطمینان دارید؟
+              </h6>
+              <div className="confirm-alert-actions">
+                <button
+                  className="confirm-alert-btn confirm-alert-delete-btn"
+                  onClick={()=>{
+                    removeContact(contactId);
+                    onClose();
+                  }}
+                >
+                  بله 
+                </button>
+                <button 
+                  className="confirm-alert-btn confirm-alert-cancel-btn"
+                  onClick={onClose}
+                >
+                  انصراف
+                </button>
+              </div>
             </div>
           </div>
         )
       }
-
     });
-  }
+}
 
   const removeContact = async(contactId) =>{
     try{
