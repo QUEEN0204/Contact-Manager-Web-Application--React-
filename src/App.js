@@ -23,6 +23,7 @@ const App =() => {
 
   const[getLoading,setLoading] = useState(false);
   const[forceRender, setForceRender]= useState(false);
+  const [query , setQuery] = useState([]);
   const [getContacts , setContacts] = useState([]);
   const [getGroups,setGroups] = useState([]);
   const[getContact , setContact] =useState({
@@ -172,6 +173,17 @@ const App =() => {
     setContact({
     ...getContact ,
     [event.target.name]: event.target.value});
+  };
+
+
+  const searchContacts = (event) =>{
+    setQuery({...query , text: event.target.value});
+
+    const allContacts = getAllContacts.filter((contact)=>{
+        return contact.fullName
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase());
+    });
   };
 
   return (
