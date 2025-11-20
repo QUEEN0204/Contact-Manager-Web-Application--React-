@@ -181,7 +181,7 @@ const App =() => {
   const searchContacts = (event) =>{
     setQuery({...query , text: event.target.value});
 
-    const allContacts = getAllContacts.filter((contact)=>{
+    const allContacts = getContacts.filter((contact)=>{
         return contact.fullName
         .toLowerCase()
         .includes(event.target.value.toLowerCase());
