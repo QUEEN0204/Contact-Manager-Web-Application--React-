@@ -9,35 +9,36 @@ const Navbar = ({query , search}) =>{
     const location = useLocation();
 
     return(
-        <nav className="navbar navbar-dark navbar-expand-sm shadow-lg" style={{backgroundColor:Background}}>
-            <div className="container">
-                <div className="row w-100">
-                    <div className="col">
-                        <div className="navbar-brand">
-                            <i className="fa fa-id-badge" style={{color:Purple}} />
-                                {" "}
-                                مدیریت 
-                                {" "}
-                                <span style={{color:Purple}}>
-                                مخاطبین
-                                </span>
-                        </div> 
-                    </div>
-
-                    {
+        <>
+        {
                         location.pathname === '/contacts' ? (
-
-                                <div className="col">
-                                <SearchContact query={query} search={search} />
+                            <nav className="navbar navbar-dark navbar-expand-sm shadow-lg" style={{backgroundColor:Background}}>
+                            <div className="container">
+                                <div className="row w-100">
+                                    <div className="col">
+                                        <div className="navbar-brand">
+                                            <i className="fa fa-id-badge" style={{color:Purple}} />
+                                                {" "}
+                                                مدیریت 
+                                                {" "}
+                                                <span style={{color:Purple}}>
+                                                مخاطبین
+                                                </span>
+                                        </div> 
+                                    </div>
+                
+                                    
+                                    <div className="col">
+                                       <SearchContact query={query} search={search} />
+                                    </div>
+                                   
+                                </div>
                             </div>
-                            
+                        </nav>
                         ) : null
                     }
-                   
-                   
-                </div>
-            </div>
-        </nav>
+        </>
+       
     )
 }
 
