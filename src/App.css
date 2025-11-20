@@ -412,6 +412,10 @@
 }
 
 @media (max-width: 480px) {
+  .edit-contact-form-col{
+    width: 100% !important;
+    min-width: 300px;
+  }
   .viewcontact {
     padding: 1rem 0;
   }
@@ -436,5 +440,234 @@
   .back-button {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
+  }
+}
+
+
+
+
+
+
+/* Edit Contact Style */
+
+.edit-contact-page {
+  padding: 1rem 0;
+  background-color: #282A36;
+  min-height: calc(100vh - 80px);
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-contact-container {
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.edit-contact-content {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+}
+
+.edit-contact-image-col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.edit-contact-form-col {
+  min-width: 350px;
+  flex: 2;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-contact-form {
+  background: #44475A;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.edit-contact-image-container {
+  text-align: center;
+}
+
+.edit-contact-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid #BD93F9;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+}
+
+.edit-form-fields {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.edit-form-group {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.edit-form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.edit-form-label {
+  display: block;
+  color: #8BE9FD;
+  font-size: 0.7rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: right;
+}
+
+.edit-form-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid #6272A4;
+  border-radius: 6px;
+  background: #282A36;
+  color: #F8F8F2;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.edit-form-input:focus {
+  outline: none;
+  border-color: #BD93F9;
+  box-shadow: 0 0 0 2px rgba(189, 147, 249, 0.3);
+}
+
+.edit-form-select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid #6272A4;
+  border-radius: 6px;
+  background: #282A36;
+  color: #F8F8F2;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: right;
+}
+
+.edit-form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  justify-content: center;
+}
+
+.edit-submit-btn {
+  background: linear-gradient(135deg, #50FA7B, #8BE9FD);
+  color: #282A36;
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.edit-back-btn {
+  background: linear-gradient(135deg, #6272A4, #44475A);
+  color: #F8F8F2;
+  text-decoration: none;
+  padding: 0.7rem 2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid #6272A4;
+  min-width: 120px;
+}
+
+.edit-submit-btn:hover,
+.edit-back-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .edit-contact-content {
+    flex-direction: column;
+    height: auto;
+    gap: 1.5rem;
+  }
+  
+  .edit-contact-form {
+    height: auto;
+    max-width: 100%;
+  }
+  
+  .edit-form-fields {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .edit-contact-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .edit-form-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .edit-submit-btn,
+  .edit-back-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-contact-container {
+    width: 95%;
+    padding: 0 0.5rem;
+  }
+  
+  .edit-contact-form {
+    padding: 1.5rem;
+  }
+  
+  .edit-contact-image {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .edit-form-input,
+  .edit-form-select {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.75rem;
   }
 }
