@@ -47,10 +47,10 @@ const Contact = ({contact}) =>{
 
                             <i className="fa fa-eye"/>
                         </Link>
-                        <button className="btn my-1" style={{backgroundColor:Pink}}>
+                        <Link to={`/contacts/edit/${contact.id}`} className="btn my-1" style={{backgroundColor:Pink}}>
 
                             <i className="fa fa-edit"/>
-                        </button>
+                        </Link>
                         <button className="btn my-1" style={{backgroundColor:Red}}>
 
                             <i className="fa fa-trash"/>
