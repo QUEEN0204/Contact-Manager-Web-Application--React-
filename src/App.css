@@ -584,8 +584,8 @@
 }
 
 .edit-submit-btn {
-  background: linear-gradient(135deg, #50FA7B, #8BE9FD);
-  color: #282A36;
+  background-color: #FF79C6 ;
+  color: #ffffff;
   border: none;
   padding: 0.7rem 2rem;
   border-radius: 6px;
@@ -597,7 +597,7 @@
 }
 
 .edit-back-btn {
-  background: linear-gradient(135deg, #6272A4, #44475A);
+  background-color: #BD93F9;
   color: #F8F8F2;
   text-decoration: none;
   padding: 0.7rem 2rem;
@@ -606,7 +606,7 @@
   font-size: 0.8rem;
   text-align: center;
   transition: all 0.3s ease;
-  border: 2px solid #6272A4;
+  border: 2px solid #BD93F9;
   min-width: 120px;
 }
 
