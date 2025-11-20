@@ -10,7 +10,7 @@ const EditContact = () =>{
     const navigate= useNavigate();
     const {contactId} = useParams();
 
-    const [state , setSate] = useState({
+    const [state , setState] = useState({
         loading:false,
         contact:{
             fullName:'',
@@ -27,16 +27,16 @@ const EditContact = () =>{
     useEffect(()=>{
         const fetchData= async ()=>{
             try{
-                setSate({...state, loading:true});
+                setState({...state, loading:true});
 
                 const {data:contactData} = await getContact(contactId);
                 const {data:groupData} = await getGroup(contactData.groups);
 
-                setSate({
+                setState({
                     loading:false ,
                     ...state,
                     contact:contactData,
-                    group: groupData.name
+                    group: groupData
                 });
 
             }
@@ -49,11 +49,11 @@ const EditContact = () =>{
     },[]);
 
     const setContactInfo = (event) => {
-        setSate({
+        setState({
             ...state,
             contact :{
                 ...state.contact,
-                [event.target.name]:[event.target.value]
+                [event.target.name]:event.target.value
             },
     });
     };
@@ -61,11 +61,11 @@ const EditContact = () =>{
     const submitForm = async (event) =>{
 
         try{
-            setSate({loading: true , ...state});
+            setState({loading: true , ...state});
 
             const {data} = await updateContact( state.contact , contactId );
 
-            setSate({ loading: false , ...state});
+            setState({ loading: false , ...state});
             if(data){
                 navigate('/contacts');
             }
@@ -82,9 +82,99 @@ const EditContact = () =>{
     return(
         <>
         {loading? (<Spinner />) :(
-            <h1>
-                {contact.id}
-            </h1>
+            <>
+            <div>
+                ویرایش اطلاعات مخاطب
+            </div>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <img src={contact.photo} alt="" />
+                    </div>
+                    <div className="col">
+                        <form onSubmit={submitForm}>
+                            <div>
+                                <input 
+                                    type="text"
+                                    name="fullName"
+                                    value={contact.fullName} 
+                                    onChange={setContactInfo}
+                                    required={true}
+                                    placeholder="نام و نام خانوادگی"
+                                />
+                            </div>
+                            <div>
+                                <input 
+                                    type="text"
+                                    name="photo"
+                                    value={contact.photo} 
+                                    onChange={setContactInfo}
+                                    required={true}
+                                    placeholder="photo Url"
+                                />
+                            </div>
+                            <div>
+                                <input 
+                                    type="number"
+                                    name="mobile"
+                                    value={contact.mobile} 
+                                    onChange={setContactInfo}
+                                    required={true}
+                                    placeholder="شماره تلفن"
+                                />
+                            </div>
+                            <div>
+                                <input 
+                                    type="email"
+                                    name="email"
+                                    value={contact.email} 
+                                    onChange={setContactInfo}
+                                    required={true}
+                                    placeholder="ایمیل"
+                                />
+                            </div>
+                            <div>
+                                <input 
+                                    type="text"
+                                    name="job"
+                                    value={contact.job} 
+                                    onChange={setContactInfo}
+                                    required={true}
+                                    placeholder="شغل"
+                                />
+                            </div>
+                            <div>
+                                <select 
+                                name="groups"
+                                value={contact.groups}
+                                onChange={setContactInfo}
+                                required={true}
+                                >
+                                    {
+                                        group.length > 0 &&
+                                        group.map((group) =>(
+                                         <option
+                                            value={group.id}
+                                            key={group.id}>
+                                            {group.name}
+                                         </option>
+                                        ))
+
+                                    }
+
+                                </select>
+                            </div>
+                            <button type="submit">ثبت تغییرات</button>
+                <Link to={'/contacts'}>
+                بازگشت
+                </Link>
+                        </form>
+                    </div>
+                </div>
+               
+            </div>
+            </>
+            
         )
         }
         </>
