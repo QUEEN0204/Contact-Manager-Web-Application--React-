@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useContext } from "react";
 
 import { getContact, getGroup } from "../../services/contactService";
 import Spinner from '../Spinner';
+import { ContactContext } from "../../context/contactContext";
 
 import "../../App.css";
 
 const ViewContact = () => {
     const { contactId } = useParams();
     const [state, setState] = useState({
-        loading: false,
         contact: {},
         group: {}
     });
+    const {loading} = useContext(ContactContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,7 +38,7 @@ const ViewContact = () => {
         fetchData();
     }, [contactId]);
 
-    const { loading, contact, group } = state;
+    const { contact, group } = state;
     
 
     return (

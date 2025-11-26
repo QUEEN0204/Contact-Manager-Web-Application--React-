@@ -224,8 +224,7 @@ const App =() => {
             <Route path='/' element={<Navigate to='/contacts'/>} />
             <Route path='/contacts'  element={ <Contacts/>} />
             <Route path='/contacts/add/' element={<AddContact />} />
-            <Route path='/contacts/edit/:contactId' 
-              element={<EditContact/>} />
+            <Route path='/contacts/edit/:contactId'  element={<EditContact/>} />
             <Route path='/contacts/:contactId' element={<ViewContact />} />
           </Routes>
       </div>
