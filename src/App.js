@@ -194,13 +194,7 @@ const App =() => {
         <Navbar />
           <Routes>
             <Route path='/' element={<Navigate to='/contacts'/>} />
-            <Route path='/contacts'  element={
-              <Contacts
-              loading={loading}
-              contacts={filteredContact}
-              confirmDelet={confirmDelet}
-            
-                />} />
+            <Route path='/contacts'  element={ <Contacts/>} />
             <Route path='/contacts/add/' element={<AddContact 
             loading={loading} 
             setContactInfo={onChangeContact}

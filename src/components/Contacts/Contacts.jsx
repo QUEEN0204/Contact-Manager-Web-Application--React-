@@ -1,13 +1,16 @@
 import Contact from "./Contact";
 import Spinner from "../Spinner";
 import { Background, Pink,Cyan} from "../../helpers/colors";
+import { ContactContext } from "../../context/contactContext";
 
 import NotFound from '../../assets/not_found.gif';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 
 
-const Contacts = ({contacts , loading , confirmDelet}) =>{
+const Contacts = () =>{
+    const {contacts , loading , deletContact} = useContext(ContactContext);
     return(
         <>
         
@@ -37,7 +40,7 @@ const Contacts = ({contacts , loading , confirmDelet}) =>{
                                 <Contact
                                  key={c.id}
                                  contact={c}
-                                 confirmDelet={() => confirmDelet({ contactId: c.id, contactFullName: c.fullName })}
+                                 deletContact={() => deletContact({ contactId: c.id, contactFullName: c.fullName })}
 
                                    />
                             )

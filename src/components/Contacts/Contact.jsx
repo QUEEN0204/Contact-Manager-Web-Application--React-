@@ -4,7 +4,7 @@ import { deletContact } from "../../services/contactService";
 
 
 
-const Contact = ({contact , confirmDelet}) =>{
+const Contact = ({contact , deletContact}) =>{
     return(
         <div className="col-md-6">
         <div className="card my-2" style={{background:'#282a47db'}}>
@@ -52,7 +52,7 @@ const Contact = ({contact , confirmDelet}) =>{
 
                             <i className="fa fa-edit"/>
                         </Link>
-                        <button onClick={() => confirmDelet(contact.id, contact.fullName)} className="btn my-1" style={{backgroundColor:Red}}>
+                        <button onClick={() => deletContact(contact.id, contact.fullName)} className="btn my-1" style={{backgroundColor:Red}}>
 
                             <i className="fa fa-trash"/>
                         </button>
