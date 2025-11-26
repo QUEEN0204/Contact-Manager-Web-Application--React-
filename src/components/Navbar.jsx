@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import {Purple ,Background } from '../helpers/colors';
 
-const Navbar = ({query , search}) =>{
+const Navbar = () =>{
 
     const location = useLocation();
 
@@ -29,7 +29,7 @@ const Navbar = ({query , search}) =>{
                 
                                     
                                     <div className="col">
-                                       <SearchContact query={query} search={search} />
+                                       <SearchContact />
                                     </div>
                                    
                                 </div>

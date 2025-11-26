@@ -1,6 +1,13 @@
+import { useContext } from 'react';
+
+import { ContactContext } from '../../context/contactContext';
+
 import {Purple} from '../../helpers/colors';
 
-const SearchContact = ({query , search}) =>{
+
+
+const SearchContact = () =>{
+    const {contactQuery , contactSearch} = useContext(ContactContext);
     return(
 
         <div className="input-group mx-2 w-75" dir="ltr">
@@ -15,8 +22,8 @@ const SearchContact = ({query , search}) =>{
         dir="rtl"
         type="text"
          id=""
-         value={query.text}
-         onChange={search}
+         value={contactQuery.text}
+         onChange={contactSearch}
 
          />
 

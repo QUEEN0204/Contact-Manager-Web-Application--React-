@@ -25,7 +25,7 @@ import { confirmAlert } from 'react-confirm-alert';
 
 const App =() => {
 
-  const[getLoading,setLoading] = useState(false);
+  const[loading,setLoading] = useState(false);
   const [query , setQuery] = useState([]);
   const [contact , setContact] = useState([]);
   const [contacts , setContacts] = useState([]);
@@ -186,23 +186,23 @@ const App =() => {
           filteredContact ,
           groups ,
           onChangeContact ,
-          deletContact : confirmDelet ,
+          deletContact: confirmDelet,
           creatContact : createContactForm ,
-          contactSearch
+          contactSearch: searchContacts
         }}>
           <div className="App">
-        <Navbar query={contactQuery} search={searchContacts} />
+        <Navbar />
           <Routes>
             <Route path='/' element={<Navigate to='/contacts'/>} />
             <Route path='/contacts'  element={
               <Contacts
-              loading={getLoading}
+              loading={loading}
               contacts={filteredContact}
               confirmDelet={confirmDelet}
             
                 />} />
             <Route path='/contacts/add/' element={<AddContact 
-            loading={getLoading} 
+            loading={loading} 
             setContactInfo={onChangeContact}
             contact={contact}
             groups={groups}
