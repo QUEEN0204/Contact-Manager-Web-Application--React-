@@ -175,30 +175,47 @@ const App =() => {
   };
 
   return (
-    <div className="App">
-      <Navbar query={contactQuery} search={searchContacts} />
-        <Routes>
-          <Route path='/' element={<Navigate to='/contacts'/>} />
-          <Route path='/contacts'  element={
-            <Contacts
-             loading={getLoading}
-            contacts={filteredContact}
-            confirmDelet={confirmDelet}
-           
-               />} />
-          <Route path='/contacts/add/' element={<AddContact 
-          loading={getLoading} 
-          setContactInfo={onChangeContact}
-          contact={contact}
-          groups={groups}
-          createContactForm={createContactForm}
+    <ContactContext.Provider
+        value={{
+          loading,
+          setLoading ,
+          contact ,
+          setContact ,
+          contactQuery ,
+          contacts ,
+          filteredContact ,
+          groups ,
+          onChangeContact ,
+          deletContact : confirmDelet ,
+          creatContact : createContactForm ,
+          contactSearch
+        }}>
+          <div className="App">
+        <Navbar query={contactQuery} search={searchContacts} />
+          <Routes>
+            <Route path='/' element={<Navigate to='/contacts'/>} />
+            <Route path='/contacts'  element={
+              <Contacts
+              loading={getLoading}
+              contacts={filteredContact}
+              confirmDelet={confirmDelet}
+            
+                />} />
+            <Route path='/contacts/add/' element={<AddContact 
+            loading={getLoading} 
+            setContactInfo={onChangeContact}
+            contact={contact}
+            groups={groups}
+            createContactForm={createContactForm}
 
-          />} />
-          <Route path='/contacts/edit/:contactId' 
-            element={<EditContact/>} />
-          <Route path='/contacts/:contactId' element={<ViewContact />} />
-        </Routes>
-    </div>
+            />} />
+            <Route path='/contacts/edit/:contactId' 
+              element={<EditContact/>} />
+            <Route path='/contacts/:contactId' element={<ViewContact />} />
+          </Routes>
+      </div>
+    </ContactContext.Provider>
+   
   );
 };
 
