@@ -4,6 +4,7 @@
 import {Route , Routes , useNavigate , Navigate} from 'react-router';
 import { useState ,useEffect} from 'react';
 
+
 import{
   AddContact,
   Contacts,
@@ -11,6 +12,9 @@ import{
   ViewContact,
   Navbar
 } from './Components';
+import { ContactContext } from './context/contactContext';
+
+
 import './App.css';
 import {getAllContacts,GetAllGroups ,createContact , deletContact} from '../src/services/contactService';
 import { confirmAlert } from 'react-confirm-alert';
@@ -22,12 +26,12 @@ import { confirmAlert } from 'react-confirm-alert';
 const App =() => {
 
   const[getLoading,setLoading] = useState(false);
-  const[forceRender, setForceRender]= useState(false);
   const [query , setQuery] = useState([]);
-  const [getContacts , setContacts] = useState([]);
-  const [getFilteredContact , setFilteredContact] = useState([]);
-  const [getGroups,setGroups] = useState([]);
-  const[getContact , setContact] =useState({
+  const [contact , setContact] = useState([]);
+  const [contacts , setContacts] = useState([]);
+  const [filteredContact , setFilteredContact] = useState([]);
+  const [groups,setGroups] = useState([]);
+  const[contactQuery , setContactQuery] =useState({
     fullName:"" ,
     photo:"" ,
     mobile:"",
@@ -66,29 +70,10 @@ const App =() => {
 
 
 
-  useEffect(()=>{
-    const fetchData = async ()=>{
-      try{
-        setLoading(true);
-        const {data:contactsData} = await getAllContacts();
-        setContacts(contactsData);
-        
-        setLoading(false);
-      }
-      catch(e){
-        alert("Error!");
-        console.log(e.message);
-        setLoading(false);
-      }
-
-    }
-
-    fetchData();
-
-  },[forceRender]);
+  
 
 
-  const confirm = ({contactId, contactFullName}) => {
+  const confirmDelet = ({contactId, contactFullName}) => {
     confirmAlert({
       customUI:({onClose})=>{
         return (
@@ -148,7 +133,7 @@ const App =() => {
 
   const createContactForm= async (event) =>{
     event.preventDefault();
-    const {status} = await createContact(getContact);
+    const {status} = await createContact(contact);
     try{
       if (status === 201){
         setContact({
@@ -160,7 +145,6 @@ const App =() => {
           groups: ""
         }); //این فرم خالی ارسال میشه تا بعد ثبت موفق مخاطب داده قبلی در اینپوتها پاک شه
         navigate("/contacts");
-        setForceRender(!forceRender);
         console.log(status.message);
         
       }
@@ -171,17 +155,17 @@ const App =() => {
 }
 
 
-  const setContactInfo = (event) =>{
+  const onChangeContact = (event) =>{
     setContact({
-    ...getContact ,
+    ...contact ,
     [event.target.name]: event.target.value});
   };
 
 
   const searchContacts = (event) =>{
-    setQuery({...query , text: event.target.value});
+    setContactQuery({...contactQuery , text: event.target.value});
 
-    const allContacts = getContacts.filter((contact)=>{
+    const allContacts = contacts.filter((contact)=>{
         return contact.fullName
         .toLowerCase()
         .includes(event.target.value.toLowerCase());
@@ -192,30 +176,26 @@ const App =() => {
 
   return (
     <div className="App">
-      <Navbar query={query} search={searchContacts} />
+      <Navbar query={contactQuery} search={searchContacts} />
         <Routes>
           <Route path='/' element={<Navigate to='/contacts'/>} />
           <Route path='/contacts'  element={
             <Contacts
              loading={getLoading}
-            contacts={getFilteredContact}
-            confirmDelet={confirm}
+            contacts={filteredContact}
+            confirmDelet={confirmDelet}
            
                />} />
           <Route path='/contacts/add/' element={<AddContact 
           loading={getLoading} 
-          setContactInfo={setContactInfo}
-          contact={getContact}
-          groups={getGroups}
+          setContactInfo={onChangeContact}
+          contact={contact}
+          groups={groups}
           createContactForm={createContactForm}
 
           />} />
           <Route path='/contacts/edit/:contactId' 
-          element={
-          <EditContact
-            forceRender={forceRender}
-            setForceRender={setForceRender}
-          />} />
+            element={<EditContact/>} />
           <Route path='/contacts/:contactId' element={<ViewContact />} />
         </Routes>
     </div>
