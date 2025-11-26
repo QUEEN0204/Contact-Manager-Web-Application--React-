@@ -27,7 +27,14 @@ const App =() => {
 
   const[loading,setLoading] = useState(false);
   const [query , setQuery] = useState([]);
-  const [contact , setContact] = useState([]);
+  const [contact , setContact] = useState({
+    fullName: "",
+    photo: "",
+    mobile: "",
+    email: "",
+    job: "",
+    group: "" 
+  });
   const [contacts , setContacts] = useState([]);
   const [filteredContact , setFilteredContact] = useState([]);
   const [groups,setGroups] = useState([]);
@@ -130,21 +137,42 @@ const App =() => {
     }
   }
   
+  // نکته:
+  // ما دو روش داشتیم ک مخاطب جدید میسازیم بیاد تو مخاطببا و قابل دیدن باشه بدون رفرش:
+  // 1. راه اول ریرندر کردن بود ک با فورس رندر و ست فورس رندر کارمیکرد اما حرفه ای نبود:
+  // (rerender) => forceRender=> setForceRender
+  // 2. ما حالا ی راه بهتر داریم همراه استاتوس دیتا روهم به کریت کانتکت میدیم و همه رو میریزیم تو ی ارایه کچون نمیشه  
+  // استیت رو تکه تکه کد  وبعد همه رو تو فیلترد کانتکت نمایش میدیم
+
+
+
+
 
   const createContactForm= async (event) =>{
     event.preventDefault();
-    const {status} = await createContact(contact);
+    const {status , data} = await createContact(contact);
     try{
+      setLoading((prevLoading) => !prevLoading);
       if (status === 201){
+       
+        const allContacts =[...contacts , data];
+        setContacts(allContacts);
+
+        setFilteredContact(allContacts);
+
         setContact({
           fullName: "",
           photo: "",
           mobile: "",
           email: "",
           job: "",
-          groups: ""
+          group: ""
         }); //این فرم خالی ارسال میشه تا بعد ثبت موفق مخاطب داده قبلی در اینپوتها پاک شه
+        
+        
+        setLoading((prevLoading) => !prevLoading);
         navigate("/contacts");
+
         console.log(status.message);
         
       }
