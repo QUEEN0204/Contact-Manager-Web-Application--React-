@@ -212,10 +212,12 @@ const App =() => {
           contactQuery ,
           contacts ,
           groups ,
+          setContacts: setContacts,
           onChangeContact ,
           deletContact: confirmDelet,
           creatContact : createContactForm ,
-          contactSearch: searchContacts
+          contactSearch: searchContacts ,
+          setFilteredContacts: setFilteredContact
         }}>
           <div className="App">
         <Navbar />

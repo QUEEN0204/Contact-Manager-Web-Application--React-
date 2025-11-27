@@ -9,7 +9,7 @@ import '../../App.css';
 import { all } from "axios";
 
 const EditContact = () => {
-    const {loading , setLoading ,groups , contacts , setContact , setFilteredContacts} = useContext(ContactContext);
+    const {loading , setLoading ,groups , contacts , setContacts , setFilteredContacts} = useContext(ContactContext);
     const navigate = useNavigate();
     const { contactId } = useParams();
 
@@ -50,7 +50,7 @@ const EditContact = () => {
         setState({
             ...state,
             contact: {
-                ...contact,
+                ...state.contact,  // ✅ اینجا باید state.contact باشه نه contact
                 [event.target.name]: event.target.value
             },
         });
@@ -69,20 +69,22 @@ const EditContact = () => {
             // استیت رو تکه تکه کد  وبعد همه رو تو فیلترد کانتکت نمایش میدیم
             // 3. ی راه سومی هم برای ادیت مخاطب داریم چون دیتا مقادیر ویرایش شده مخاطبو بر میگردونه همینجا جایگذاری کنیمو نمایش بدیم جای ارسال درخاوست مجدد  ب سرور
           
-    const { data , status } = await updateContact(contact, contactId);
+            const { data , status } = await updateContact(state.contact, contactId);  // ✅ از state.contact استفاده کن
             setState({ ...state, loading: false });
             if (status === 200) {
                 setLoading(false);
+        
                 const allContacts = [...contacts];
-                const contactIndex = allContacts.findIndex(c => c.id === contactId);
-                console.log(allContacts[contactIndex]);
-                allContacts[contactIndex] = {...contact};
-                console.log(allContacts[contactIndex]);
-                setContact(allContacts);
-               // setFilteredContacts(allContacts);
-                
-                navigate('/contacts');
-            }
+                const contactIndex = allContacts.findIndex(
+                  (c) => c.id === parseInt(contactId)
+                );
+                allContacts[contactIndex] = { ...data };
+        
+                setContacts(allContacts);
+                setFilteredContacts(allContacts);
+        
+                navigate("/contacts");
+              }
         } catch (e) {
             console.log(e.message);
             setState({ ...state, loading: false });
