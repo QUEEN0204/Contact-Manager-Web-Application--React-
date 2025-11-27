@@ -10,7 +10,7 @@ import { useContext } from "react";
 
 
 const Contacts = () =>{
-    const {contacts , loading , deletContact} = useContext(ContactContext);
+    const {contacts , loading , deletContact ,filteredContact} = useContext(ContactContext);
     return(
         <>
         
@@ -36,7 +36,7 @@ const Contacts = () =>{
                     <section className="container">
                     <div className="row">
                         {
-                            contacts?.length > 0  ? contacts.map(c=>
+                            filteredContact.length > 0  ? filteredContact.map(c=>
                                 <Contact
                                  key={c.id}
                                  contact={c}

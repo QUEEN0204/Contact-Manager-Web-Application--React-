@@ -224,6 +224,7 @@ const App =() => {
           loading,
           setLoading ,
           contact ,
+          filteredContact ,
           setContact ,
           contactQuery ,
           contacts ,
