@@ -23,12 +23,12 @@ const AddContact = () => {
         ) : (
           <div className="add-contact-container">
             <div className="form-content">
-              {/* سمت چپ - اسپینر */}
+              
               <div className="spinner-side">
                 <img src={Register} className="regGif" alt="Register form" />
               </div>
               
-              {/* سمت راست - فرم */}
+             
               <div className="form-side">
                 <div className="container">
                   <div className="form-header">

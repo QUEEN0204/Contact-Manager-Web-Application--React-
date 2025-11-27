@@ -2,7 +2,7 @@
   "contacts": [
     {
       "id": "a3db",
-      "fullName": "زهرا ارشاد",
+      "fullName": "زهرا ارشاد1",
       "photo": "https://media.licdn.com/dms/image/v2/D5603AQGUihqmilI_QQ/profile-displayphoto-scale_200_200/B56Zhp5r0xG4AY-/0/1754123387873?e=2147483647&v=beta&t=Xu7UNp3iOUPr2d5B2vL7XVrJXnaFoIPidPDEuRgNo2o",
       "mobile": "09021504439",
       "email": "z@gmail.com",
@@ -37,7 +37,7 @@
       "mobile": "0974777777777",
       "email": "fox@gmail.com",
       "job": "HR manager",
-      "groups": "",
+      "groups": "4",
       "group": "5"
     },
     {
@@ -57,7 +57,8 @@
       "mobile": "091212121211",
       "email": "diaz@gmail.com",
       "job": "Teacher",
-      "group": ""
+      "group": "",
+      "groups": "4"
     }
   ],
   "groups": [

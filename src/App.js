@@ -211,7 +211,6 @@ const App =() => {
           setContact ,
           contactQuery ,
           contacts ,
-          filteredContact ,
           groups ,
           onChangeContact ,
           deletContact: confirmDelet,

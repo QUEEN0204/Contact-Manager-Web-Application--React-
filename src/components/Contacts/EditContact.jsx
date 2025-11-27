@@ -1,13 +1,15 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-
 import { useEffect, useState } from "react";
+import { useContext } from "react";
 
-import { getContact, updateContact, GetAllGroups } from '../../services/contactService';
-
+import { getContact, updateContact , GetAllGroups  } from '../../services/contactService';
+import { ContactContext } from "../../context/contactContext";
 import Spinner from '../Spinner';
 import '../../App.css';
+import { all } from "axios";
 
-const EditContact = ({forceRender , setForceRender}) => {
+const EditContact = () => {
+    const {loading , setLoading ,groups , contacts , setContact , setFilteredContacts} = useContext(ContactContext);
     const navigate = useNavigate();
     const { contactId } = useParams();
 
@@ -44,11 +46,11 @@ const EditContact = ({forceRender , setForceRender}) => {
         fetchData();
     }, [contactId]);
 
-    const setContactInfo = (event) => {
+    const onChangeContact = (event) => {
         setState({
             ...state,
             contact: {
-                ...state.contact,
+                ...contact,
                 [event.target.name]: event.target.value
             },
         });
@@ -57,11 +59,28 @@ const EditContact = ({forceRender , setForceRender}) => {
     const submitForm = async (event) => {
         event.preventDefault();
         try {
-            setState({ ...state, loading: true });
-            const { data } = await updateContact(state.contact, contactId);
+            setLoading(true);
+            //setState({ ...state, loading: true });
+             // نکته:
+            // ما دو روش داشتیم ک مخاطب جدید میسازیم بیاد تو مخاطببا و قابل دیدن باشه بدون رفرش:
+            // 1. راه اول ریرندر کردن بود ک با فورس رندر و ست فورس رندر کارمیکرد اما حرفه ای نبود:
+            // (rerender) => forceRender=> setForceRender
+            // 2. ما حالا ی راه بهتر داریم همراه استاتوس دیتا روهم به کریت کانتکت میدیم و همه رو میریزیم تو ی ارایه کچون نمیشه  
+            // استیت رو تکه تکه کد  وبعد همه رو تو فیلترد کانتکت نمایش میدیم
+            // 3. ی راه سومی هم برای ادیت مخاطب داریم چون دیتا مقادیر ویرایش شده مخاطبو بر میگردونه همینجا جایگذاری کنیمو نمایش بدیم جای ارسال درخاوست مجدد  ب سرور
+          
+    const { data , status } = await updateContact(contact, contactId);
             setState({ ...state, loading: false });
-            if (data) {
-                setForceRender( !forceRender);
+            if (status === 200) {
+                setLoading(false);
+                const allContacts = [...contacts];
+                const contactIndex = allContacts.findIndex(c => c.id === contactId);
+                console.log(allContacts[contactIndex]);
+                allContacts[contactIndex] = {...contact};
+                console.log(allContacts[contactIndex]);
+                setContact(allContacts);
+               // setFilteredContacts(allContacts);
+                
                 navigate('/contacts');
             }
         } catch (e) {
@@ -70,7 +89,7 @@ const EditContact = ({forceRender , setForceRender}) => {
         }
     };
 
-    const { contact, group, loading } = state;
+    const { contact, group } = state;
 
     return (
         <>
@@ -116,7 +135,7 @@ const EditContact = ({forceRender , setForceRender}) => {
                                         type="text"
                                         name="fullName"
                                         value={contact.fullName} 
-                                        onChange={setContactInfo}
+                                        onChange={onChangeContact}
                                         required={true}
                                         placeholder="نام و نام خانوادگی"
                                         className="edit-form-input"
@@ -129,7 +148,7 @@ const EditContact = ({forceRender , setForceRender}) => {
                                         type="number"
                                         name="mobile"
                                         value={contact.mobile} 
-                                        onChange={setContactInfo}
+                                        onChange={onChangeContact}
                                         required={true}
                                         placeholder="شماره تلفن"
                                         className="edit-form-input"
@@ -142,7 +161,7 @@ const EditContact = ({forceRender , setForceRender}) => {
                                         type="email"
                                         name="email"
                                         value={contact.email} 
-                                        onChange={setContactInfo}
+                                        onChange={onChangeContact}
                                         required={true}
                                         placeholder="ایمیل"
                                         className="edit-form-input"
@@ -155,7 +174,7 @@ const EditContact = ({forceRender , setForceRender}) => {
                                         type="text"
                                         name="job"
                                         value={contact.job} 
-                                        onChange={setContactInfo}
+                                        onChange={onChangeContact}
                                         required={true}
                                         placeholder="شغل"
                                         className="edit-form-input"
@@ -168,7 +187,7 @@ const EditContact = ({forceRender , setForceRender}) => {
                                         type="text"
                                         name="photo"
                                         value={contact.photo} 
-                                        onChange={setContactInfo}
+                                        onChange={onChangeContact}
                                         required={true}
                                         placeholder="آدرس URL عکس"
                                         className="edit-form-input"
@@ -180,7 +199,7 @@ const EditContact = ({forceRender , setForceRender}) => {
                                     <select 
                                         name="groups"
                                         value={contact.groups}
-                                        onChange={setContactInfo}
+                                        onChange={onChangeContact}
                                         required={true}
                                         className="edit-form-select"
                                     >
