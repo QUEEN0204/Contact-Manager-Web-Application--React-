@@ -16,7 +16,7 @@ import { ContactContext } from './context/contactContext';
 
 
 import './App.css';
-import {getAllContacts,GetAllGroups ,createContact , deletContact} from '../src/services/contactService';
+import {getAllContacts,GetAllGroups ,createContact ,deletContact } from '../src/services/contactService';
 import { confirmAlert } from 'react-confirm-alert';
 
 
@@ -118,22 +118,38 @@ const App =() => {
     });
 }
 
+ /*
+     * NOTE
+     * 1- forceRender -> setForceRender
+     * 2- Server Request
+     * 3- Delete Local State
+     * 4- Delete State Before Server Request
+     * در روش 4 قبل اینکه ب سرور درخواست بدیم از محلیها پاک میکنیم
+     * 
+     */
+
   const removeContact = async(contactId) =>{
+    const allContacts = [...contacts];
     try{
-      const response = await deletContact(contactId);
-      if(response){
-        setLoading(false);
-        const {data:contactData} = await getAllContacts();
+      const updatedContact = contacts.filter(c =>c.id !== contactId);
+      
 
-        setContacts(contactData);
+      setContacts(updatedContact);
+      setFilteredContact(updatedContact);
 
-        setLoading(false);
+      // Sending delete request to server
+      const { status } = await deletContact(contactId);
+
+      if (status !== 200) {
+        setContacts(allContacts);
+        setFilteredContact(allContacts);
       }
-
     }
     catch(e){
       console.log(e.message);
-      setLoading(false);
+
+      setContacts(allContacts);
+      setFilteredContact(allContacts);
     }
   }
   
