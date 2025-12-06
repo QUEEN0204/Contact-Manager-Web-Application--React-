@@ -213,13 +213,16 @@ const App =() => {
   const searchContacts = (event) =>{
     setContactQuery({...contactQuery , text: event.target.value});
 
-    const allContacts = contacts.filter((contact)=>{
+
+      console.log( event.target.value);
+
+
+    setFilteredContact( contacts.filter((contact)=>{
         return contact.fullName
         .toLowerCase()
         .includes(event.target.value.toLowerCase());
-    });
+    }));
 
-    setFilteredContact(allContacts);
   };
 
   return (
