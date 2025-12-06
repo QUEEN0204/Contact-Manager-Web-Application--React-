@@ -50,6 +50,10 @@ const App =() => {
   const navigate= useNavigate();
 
   useEffect(()=>{
+
+    console.log('useEffect 😎');
+
+
     const fetchData = async ()=>{
       try{
         setLoading(true);
