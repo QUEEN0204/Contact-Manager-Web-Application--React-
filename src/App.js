@@ -202,15 +202,38 @@ const App =() => {
   };
 
 
+
+
+
+  // این روشی که متد سرچ⬇️ رو انجام دادیم مختص زمانیکه دیتابیس خیلی بزرگه
+  //  و احتمال هنگ بعلت سرچ میتونه پیش بیاد 
+  // با دیبانس کردن و تاخیر دادن به فانکشن ما صبر میکنیم دیتا خاص باشه
+  //  و فقط یدونه باشه تا با داده تکراری هنگ پیش نیاد
+  //  که اینجا با تایم اوت انجام دادیم میتونیم ا خودش مستقیما یا یوزافکت کمک بگیریم
+
+
+  let timeOut;
   const searchContacts = (query) =>{
+
+      clearTimeout(timeOut);
+
+      if(!query) return setFilteredContact([...contacts]);
+      
 
       console.log(query);
 
-    setFilteredContact( contacts.filter((contact)=>{
-        return contact.fullName
-        .toLowerCase()
-        .includes(query.toLowerCase());
-    }));
+
+      timeOut=setTimeout(() =>{
+
+        setFilteredContact( contacts.filter((contact)=>{
+          return contact.fullName
+          .toLowerCase()
+          .includes(query.toLowerCase());
+      }));
+
+      },1000);
+
+    
 
   };
 
