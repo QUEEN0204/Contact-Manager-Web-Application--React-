@@ -3,6 +3,7 @@
 
 import {Route , Routes , useNavigate , Navigate} from 'react-router';
 import { useState ,useEffect} from 'react';
+import _ from 'lodash';
 
 
 import{
@@ -212,10 +213,10 @@ const App =() => {
   //  که اینجا با تایم اوت انجام دادیم میتونیم ا خودش مستقیما یا یوزافکت کمک بگیریم
 
 
-  let timeOut;
-  const searchContacts = (query) =>{
+  //let timeOut;
+  const searchContacts = _.debounce(query =>{
 
-      clearTimeout(timeOut);
+      //clearTimeout(timeOut);
 
       if(!query) return setFilteredContact([...contacts]);
       
@@ -223,7 +224,7 @@ const App =() => {
       console.log(query);
 
 
-      timeOut=setTimeout(() =>{
+      //timeOut=setTimeout(() =>{
 
         setFilteredContact( contacts.filter((contact)=>{
           return contact.fullName
@@ -231,11 +232,11 @@ const App =() => {
           .includes(query.toLowerCase());
       }));
 
-      },1000);
+     // },1000);
 
     
 
-  };
+  },1000);
 
   return (
     <ContactContext.Provider
