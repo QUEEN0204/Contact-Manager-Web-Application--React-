@@ -38,14 +38,6 @@ const App =() => {
   const [contacts , setContacts] = useState([]);
   const [filteredContact , setFilteredContact] = useState([]);
   const [groups,setGroups] = useState([]);
-  const[contactQuery , setContactQuery] =useState({
-    fullName:"" ,
-    photo:"" ,
-    mobile:"",
-    email:"",
-    job:"",
-    groups:""
-  });
 
   const navigate= useNavigate();
 
@@ -210,17 +202,14 @@ const App =() => {
   };
 
 
-  const searchContacts = (event) =>{
-    setContactQuery({...contactQuery , text: event.target.value});
+  const searchContacts = (query) =>{
 
-
-      console.log( event.target.value);
-
+      console.log(query);
 
     setFilteredContact( contacts.filter((contact)=>{
         return contact.fullName
         .toLowerCase()
-        .includes(event.target.value.toLowerCase());
+        .includes(query.toLowerCase());
     }));
 
   };
@@ -233,7 +222,6 @@ const App =() => {
           contact ,
           filteredContact ,
           setContact ,
-          contactQuery ,
           contacts ,
           groups ,
           setContacts: setContacts,
