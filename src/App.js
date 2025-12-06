@@ -41,6 +41,7 @@ const App =() => {
   const [contacts , setContacts] = useState([]);
   const [filteredContact , setFilteredContact] = useState([]);
   const [groups,setGroups] = useState([]);
+  const [errors , setError] = useState([]);
 
   const navigate= useNavigate();
 
@@ -194,14 +195,14 @@ const App =() => {
         
         setLoading((prevLoading) => !prevLoading);
         navigate("/contacts");
-
+        setError([]);
         console.log(status.message);
         
       }
   }
   catch(e){
     console.log(e.inner);
-    //console.log()
+    setError(e.inner);
   }
 }
 
@@ -258,6 +259,7 @@ const App =() => {
           setContact ,
           contacts ,
           groups ,
+          errors ,
           setContacts: setContacts,
           onChangeContact ,
           deletContact: confirmDelet,

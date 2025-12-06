@@ -10,7 +10,12 @@ import '../../App.css';
 
 
 const AddContact = () => {
-      const {loading , contact , onChangeContact , groups , creatContact} = useContext(ContactContext);
+      const {loading ,
+            contact ,
+            onChangeContact ,
+            groups ,
+            creatContact,
+            errors} = useContext(ContactContext);
 
 
 
@@ -131,8 +136,19 @@ const AddContact = () => {
                       </form>
                     </div>
                   </div>
+                  <br />
+                  {
+                !errors ? null :
+                errors.map((error, index)=>(
+                    <p className="errMsg" key={index}>
+                      {error.message}
+                    </p>
+                ))
+              }
+              <br />
                 </div>
               </div>
+             
             </div>
           </div>
         )}
