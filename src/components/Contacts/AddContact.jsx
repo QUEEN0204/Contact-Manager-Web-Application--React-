@@ -50,7 +50,7 @@ const AddContact = () => {
                             onChange={onChangeContact}
                             placeholder="نام و نام خانوداگی" 
                             className="form-input"
-                            required={true} 
+                             
                           />
                         </div>
                         
@@ -62,7 +62,7 @@ const AddContact = () => {
                             onChange={onChangeContact} 
                             placeholder="آدرس عکس" 
                             className="form-input"
-                            required={true} 
+                             
                           />
                         </div>
                         
@@ -74,7 +74,7 @@ const AddContact = () => {
                             onChange={onChangeContact} 
                             placeholder="شماره موبایل" 
                             className="form-input"
-                            required={true} 
+                             
                           />
                         </div>
                         
@@ -86,7 +86,7 @@ const AddContact = () => {
                             onChange={onChangeContact}
                             placeholder="آدرس ایمیل" 
                             className="form-input"
-                            required={true} 
+                             
                           />
                         </div>
                         
@@ -98,7 +98,7 @@ const AddContact = () => {
                             onChange={onChangeContact}
                             placeholder="شغل" 
                             className="form-input"
-                            required={true} 
+                             
                           />
                         </div>
                         

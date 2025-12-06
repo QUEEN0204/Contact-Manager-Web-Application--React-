@@ -6,6 +6,7 @@ import { useState ,useEffect} from 'react';
 import _ from 'lodash';
 
 
+
 import{
   AddContact,
   Contacts,
@@ -14,6 +15,7 @@ import{
   Navbar
 } from './Components';
 import { ContactContext } from './context/contactContext';
+import { contactSchema } from './Validations/contactValidation';
 
 
 import './App.css';
@@ -163,8 +165,15 @@ const App =() => {
 
   const createContactForm= async (event) =>{
     event.preventDefault();
-    const {status , data} = await createContact(contact);
+
+    
     try{
+      await contactSchema.validate(contact, { abortEarly: false });
+
+
+    const {status , data} = await createContact(contact);
+
+
       setLoading((prevLoading) => !prevLoading);
       if (status === 201){
        
@@ -191,7 +200,8 @@ const App =() => {
       }
   }
   catch(e){
-    console.log(e.message)
+    console.log(e.inner);
+    //console.log()
   }
 }
 
