@@ -41,7 +41,7 @@ const App =() => {
   const [contacts , setContacts] = useState([]);
   const [filteredContact , setFilteredContact] = useState([]);
   const [groups,setGroups] = useState([]);
-  const [errors , setError] = useState([]);
+  //const [errors , setError] = useState([]);
 
   const navigate= useNavigate();
 
@@ -164,15 +164,15 @@ const App =() => {
 
 
 
-  const createContactForm= async (event) =>{
-    event.preventDefault();
+  const createContactForm= async (value) =>{
+    // event.preventDefault();
 
     
     try{
-      await contactSchema.validate(contact, { abortEarly: false });
+      // await contactSchema.validate(contact, { abortEarly: false });
 
 
-    const {status , data} = await createContact(contact);
+    const {status , data} = await createContact(value);
 
 
       setLoading((prevLoading) => !prevLoading);
@@ -195,14 +195,14 @@ const App =() => {
         
         setLoading((prevLoading) => !prevLoading);
         navigate("/contacts");
-        setError([]);
+        // setError([]);
         console.log(status.message);
         
       }
   }
   catch(e){
     console.log(e.inner);
-    setError(e.inner);
+   // setError(e.inner);
   }
 }
 
@@ -259,7 +259,7 @@ const App =() => {
           setContact ,
           contacts ,
           groups ,
-          errors ,
+          // errors ,
           setContacts: setContacts,
           onChangeContact ,
           deletContact: confirmDelet,

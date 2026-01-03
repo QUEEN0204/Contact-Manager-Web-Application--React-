@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-
+import {useFormik} from 'formik';
 import Spinner from '../Spinner';
 import Register from '../../assets/register.gif';
 import {} from '../../helpers/colors';
 import { ContactContext } from "../../context/contactContext";
+import {contactSchema} from '../../Validations/contactValidation';
 
 import '../../App.css';
+import { values } from "lodash";
 
 
 const AddContact = () => {
@@ -15,8 +17,28 @@ const AddContact = () => {
             onChangeContact ,
             groups ,
             creatContact,
-            errors} = useContext(ContactContext);
+            // errors
+          } = useContext(ContactContext);
 
+
+          const formik = useFormik({
+
+            initialValues:{
+              fullName:'' ,
+              photo:'' ,
+              mobile:'' ,
+              email: '',
+              job:'' ,
+              group:'' ,
+            } ,
+            validationSchema : contactSchema ,
+
+            onSubmit : (values) =>{
+              console.log(values);
+              creatContact(values);
+            }
+
+          });
 
 
     return (
@@ -46,72 +68,109 @@ const AddContact = () => {
                   
                   <div className="row justify-content-center">
                     <div className="col-12 col-md-8 col-lg-6">
-                      <form className="contact-form" onSubmit={creatContact}>
+                      <form className="contact-form" onSubmit={formik.handleSubmit}>
                         <div className="form-group">
                           <input 
                             type="text" 
+                            id="fullName"
                             name="fullName" 
-                            value={contact.fullName}
-                            onChange={onChangeContact}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.fullName}
+                            onChange={formik.handleChange}
                             placeholder="نام و نام خانوداگی" 
                             className="form-input"
                              
                           />
                         </div>
+                        {
+                          (formik.errors.fullName && formik.touched.fullName) ?
+
+                                  <p className="errMsg">{formik.errors.fullName}</p> 
+                                  : null
+                        }
                         
                         <div className="form-group">
                           <input 
                             type="text" 
                             name="photo"
-                            value={contact.photo}
-                            onChange={onChangeContact} 
+                            id="photo"
+                            value={formik.values.photo}
+                            onChange={formik.handleChange} 
                             placeholder="آدرس عکس" 
                             className="form-input"
                              
                           />
                         </div>
+                        {
+                          (formik.errors.photo && formik.touched.photo) ?
+                          
+                                  <p className="errMsg">{formik.errors.photo}</p> 
+                                  : null
+                        }
                         
                         <div className="form-group">
                           <input 
                             type="number" 
                             name="mobile"
-                            value={contact.mobile}
-                            onChange={onChangeContact} 
+                            id="mobile"
+                            value={formik.values.mobile}
+                            onChange={formik.handleChange} 
                             placeholder="شماره موبایل" 
                             className="form-input"
                              
                           />
                         </div>
+                        {
+                          (formik.errors.mobile && formik.touched.mobile) ?
+                          
+                                  <p className="errMsg">{formik.errors.mobile}</p> 
+                                  : null
+                        }
                         
                         <div className="form-group">
                           <input 
                             type="email" 
                             name="email" 
-                            value={contact.email}
-                            onChange={onChangeContact}
+                            id="email" 
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
                             placeholder="آدرس ایمیل" 
                             className="form-input"
                              
                           />
                         </div>
+                        {
+                          (formik.errors.email && formik.touched.email) ?
+                          
+                                  <p className="errMsg">{formik.errors.email}</p> 
+                                  : null
+                        }
                         
                         <div className="form-group">
                           <input 
                             type="text" 
-                            name="job" 
-                            value={contact.job}
-                            onChange={onChangeContact}
+                            name="job"
+                            id="job" 
+                            value={formik.values.job}
+                            onChange={formik.handleChange}
                             placeholder="شغل" 
                             className="form-input"
                              
                           />
                         </div>
+                        {
+                          (formik.errors.job && formik.touched.job) ?
+                          
+                                  <p className="errMsg">{formik.errors.job}</p> 
+                                  : null
+                        }
                         
                         <div className="form-group">
                           <select 
                           name="group"
-                          value={contact.group}
-                          onChange={onChangeContact}
+                          id="group"
+                          value={formik.values.group}
+                          onChange={formik.handleChange}
                           className="form-select">
                             {
                                 groups.length > 0 && groups.map(group =>(
@@ -122,6 +181,12 @@ const AddContact = () => {
                             }
                           </select>
                         </div>
+                        {
+                          (formik.errors.group && formik.touched.group) ?
+                          
+                                  <p className="errMsg">{formik.errors.group}</p> 
+                                  : null
+                        }
                         
                         <div className="form-actions">
                           <input 
@@ -138,12 +203,12 @@ const AddContact = () => {
                   </div>
                   <br />
                   {
-                !errors ? null :
-                errors.map((error, index)=>(
-                    <p className="errMsg" key={index}>
-                      {error.message}
-                    </p>
-                ))
+                // !errors ? null :
+                // errors.map((error, index)=>(
+                //     <p className="errMsg" key={index}>
+                //       {error.message}
+                //     </p>
+                // ))
               }
               <br />
                 </div>
